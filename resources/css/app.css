@@ -1,0 +1,183 @@
+.padding-top-small {
+    padding-top: 20px;
+}
+
+.image-section {
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px ;
+    box-shadow: 0 0 10px darkgray;
+    width: 100%;
+    min-height: 200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.image-content hr {
+    color: beige;
+    margin: 0;
+    width: 100%;
+}
+
+.image-block {
+    width: 100%;
+    object-fit: cover;
+}
+
+.image-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+    min-height: 300px;
+}
+
+.image-content-actions {
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.image-form-save {
+    display: flex;
+}
+
+.image-input-select {
+    min-width: 90px;
+}
+
+.button-icon {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.button-icon:hover{
+    background-color: #f5f5f5;
+}
+
+.image-content-info {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.image-author {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    justify-content: space-between;
+}
+
+.image-author form{
+    display: flex;
+    height: 100%;
+}
+
+.image-comment-section {
+    width: 100%;
+}
+
+.image-comment-block {
+    overflow-y: scroll;
+    width: 100%;
+    max-height: 300px;
+    padding: 10px 0;
+}
+
+.image-comment-info {
+    display: flex;
+}
+
+.image-comment-info a{
+    display: flex;
+}
+
+.image-comment-list {
+
+}
+
+.image-comment-form {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    
+    background-color: #f5f5f5;
+    border-radius: 25px;
+}
+
+.image-comment-input-text {
+    background-color: #f5f5f5;
+    border: none;
+    resize: none;
+    height: 30px;
+    width: 100%;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+
+.image-comment-input-text:focus {
+    border: none;
+    outline: none;
+}
+
+.comment-send-button {
+    border-radius: 15px;
+
+}
+
+.image-comment-text {
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.image-comment-user-name {
+    color: #000000;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+}
+
+.user-default-icon {
+    padding: 15px;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+}
+
+.image-form-action-block {
+    display: flex;
+}
+
+.image-form-like {
+    display: flex;
+}
+
+@media (min-width: 640px) {
+    
+}
+
+@media (min-width: 960px) {
+    .image-section {
+        flex-direction: row;
+    }
+    
+    .image-block {
+        width: 100%;
+        object-fit: contain;
+    }
+    
+    .image-content {
+        width: 40%;
+    }
+    
+}
+
+@media (min-width: 1200px) {
+    
+}
