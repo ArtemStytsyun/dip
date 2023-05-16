@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image',
+        'description',
     ];
 
     /**
@@ -56,5 +58,13 @@ class User extends Authenticatable
 
     public function likedImages () {
         return $this->belongsToMany(Image::class, 'image_user_likes', 'user_id', 'image_id' );
+    }
+
+    public function subscriptions () {
+        return $this->belongsToMany(User::class, 'user_subscription', 'user_id', 'subscription_id' );
+    }
+
+    public function subscribers () {
+        return $this->belongsToMany(User::class, 'user_subscription', 'subscription_id', 'user_id' );
     }
 }

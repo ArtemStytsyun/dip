@@ -16,13 +16,15 @@ class IndexController extends Controller
         $user = User::find($id);
         $boards = $user->boards;
         $likedImages = $user->likedImages;
+        $subscriptions = $user->subscriptions;
+        
         
         foreach($boards as $board) {
             $board->images = array($board->images);
         } 
 
         if(Auth::id() == $id){
-            return view('user.index', compact('boards', 'likedImages'));
+            return view('user.index', compact('boards', 'likedImages', 'user'));
         }
         else{
             return view('user.show', compact('boards', 'user'));

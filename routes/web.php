@@ -25,6 +25,10 @@ Auth::routes();
 
 Route::group(['namespace'=>'User'], function() {
     Route::get('/users/{user}', 'IndexController')->name('user');
+    Route::post('/users/{user}/update', 'UpdateController')->name('user.update');
+    Route::post('/users/{user}/subscribe', 'SubscribeController')->name('user.subscribe');
+    Route::post('/users/{user}/unsubscribe', 'UnsubscribeController')->name('user.unsubscribe');
+
 });
 
 Route::group(['namespace'=>'Board'], function() {

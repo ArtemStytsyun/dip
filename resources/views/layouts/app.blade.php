@@ -80,7 +80,7 @@
                     <div class="uk-navbar-left">
                         <ul class="uk-navbar-nav">
                             <li class="uk-active"><img src="" alt=""></li>
-                            <li class="uk-active"><a class="uk-navbar-item uk-logo" href="#">Logo</a></li>
+                            <li class="uk-active"><a class="uk-navbar-item uk-logo" href="/">Logo</a></li>
                         </ul>
                     </div>
         

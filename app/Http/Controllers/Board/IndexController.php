@@ -19,11 +19,11 @@ class IndexController extends Controller
         
 
         if(Auth::id() == $user->id){
-            return view('board.index', compact('board'));
+            return view('board.index', compact('board', 'user'));
         }
         else{
             // $board->images = array($board->images);
-            return view('board.show', compact('board'));
+            return view('board.show', compact('board', 'user'));
         }
     }
 }

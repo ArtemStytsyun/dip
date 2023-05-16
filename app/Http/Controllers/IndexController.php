@@ -14,7 +14,7 @@ class IndexController extends Controller
 
         $images = Image::all();
         $boards = Board::all();
-
+        
         return view('index', compact('images','boards'));        
     }
 }

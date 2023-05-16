@@ -17,7 +17,7 @@ class Image extends Model
     }   
 
     public function user () {
-        return $this->belongsTo(Board::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }   
 
     public function comments () {

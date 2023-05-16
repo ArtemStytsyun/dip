@@ -12,8 +12,7 @@
                         @if ($isSaveInBoardUser)
                             <div>
                                 <div class="button-icon">
-                                    <span uk-icon="more" class="uk-icon">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="10" r="2"/><circle cx="10" cy="10" r="2"/><circle cx="17" cy="10" r="2"/></svg>
+                                    <span uk-icon="more" class="uk-icon uk-">
                                     </span> 
                                 </div>   
                                 <div class="uk-navbar-dropdown" uk-drop="mode: click; pos: bottom-left">

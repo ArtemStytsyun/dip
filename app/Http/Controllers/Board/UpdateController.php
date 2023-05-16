@@ -23,7 +23,7 @@ class UpdateController extends Controller
 
         if(Auth::check() && $user->id == Auth::user()->id) {
             $board->update($data);
-            return redirect()->route('image.index', $board->id);
+            return redirect()->route('board.index', $board->id);
         }
         else {
             //404
