@@ -122,10 +122,19 @@
                 </form>
             </div>
         </div>
-
-        <div>
-            Похожие
+        <div class="uk-flex uk-flex-column uk-flex-middle uk-margin-small-top">
+            <h3>Похожие изображения</h3>
+            <div class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-small uk-margin-small-top" uk-grid="masonry: true"> 
+                @foreach ($images as $image)
+                    <a href="{{route('image.index', $image->id)}}">
+                        <img class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle image-card" src="{{asset('/storage/' . $image->path)}}" alt="">
+                        <p>{{$image->name}}</p>
+                        <p>{{$image->user->id}}</p>
+                    </a>
+                @endforeach
+            </div>
         </div>
+     
         
     </div>
 @endSection('content')

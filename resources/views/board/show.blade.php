@@ -13,9 +13,9 @@
             <li class><a>Сохраненные</a></li>
         </ul>
 
-        <ul class="uk-switcher uk-margin-top">
+        <ul class="uk-switcher uk-margin-top uk-width-1-1">
             <li>
-                <div class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-small" uk-grid="masonry: true"> 
+                <div class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-small uk-width-1-1" uk-grid="masonry: true"> 
                     @foreach ($board->images as $image)
                         @if ($image->user->id == $user->id)
                         <a href="{{route('image.index', $image->id)}}">
@@ -28,7 +28,7 @@
                 </div>
             </li>
             <li>
-                <div class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-small" uk-grid="masonry: true"> 
+                <div class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-small uk-width-1-1" uk-grid="masonry: true"> 
                     @foreach ($board->images as $image)
                         @if ($image->user->id != $user->id)
                         <a href="{{route('image.index', $image->id)}}">

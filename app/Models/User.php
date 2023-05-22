@@ -67,4 +67,5 @@ class User extends Authenticatable
     public function subscribers () {
         return $this->belongsToMany(User::class, 'user_subscription', 'subscription_id', 'user_id' );
     }
+
 }

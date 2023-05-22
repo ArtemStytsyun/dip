@@ -21,7 +21,7 @@ class DestroyController extends Controller
             $boards = Board::all();
             // $boards = $boards
             $image->boards()->detach($image->boards);
-
+            unlink('..\storage\app\public\\' . $image->path);
             $image->delete();
             return redirect()->route('user', $user->id);
         }

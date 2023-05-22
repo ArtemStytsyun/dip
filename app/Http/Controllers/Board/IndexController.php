@@ -15,8 +15,6 @@ class IndexController extends Controller
         
         $user = Board::find($id)->user;
         $board = Board::find($id);
-        // dd($board->images);
-        
 
         if(Auth::id() == $user->id){
             return view('board.index', compact('board', 'user'));

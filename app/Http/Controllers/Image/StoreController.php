@@ -32,10 +32,6 @@ class StoreController extends Controller
         if(Auth::check() && Board::find($board)->user_id = Auth::user()->id) {
             $image = Image::create($data);
             $image->boards()->attach($board);
-            // BoardImage::firstOrCreate([
-            //     'image_id'=>$image->id,
-            //     'board_id'=>$board,
-            // ]);
             return redirect()->route('board.index', $board);
         }
         else {

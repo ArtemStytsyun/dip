@@ -1,24 +1,24 @@
-# from flask import Flask, jsonify
-
-# app = Flask(__name__)
-
-# @app.route('/image', methods=['POST'])
-# def get_number():
-#     # Логика получения числа
-#     number = 42
-
-#     # Возвращаем число в формате JSON
-#     return jsonify({'number': number})
-
-# if __name__ == '__main__':
-#     app.run(port=5000)
-
-
-
+from flask import Flask, jsonify, request
 import cv2
 import numpy as np
 import os
 from skimage.metrics import structural_similarity as ssim
+
+app = Flask(__name__)
+
+@app.route('/images', methods=['post'])
+
+def index():
+    path = request.get_json()
+
+    target_image = '..\\storage\\app\\public\\' + path['path'].replace('/', '\\')
+    folder_path = '..\\storage\\app\\public\\usersImages'
+    top_k = 5
+    print(path['path'])
+
+    similar_images = find_similar_images(target_image, folder_path, top_k)
+
+    return jsonify(similar_images)
 
 def compare_images(image1, image2):
     img1 = cv2.imread(image1)
@@ -46,22 +46,11 @@ def find_similar_images(target_image, folder_path, top_k):
             similarity = compare_images(target_img_path, image_path)
             similar_images.append((image_file, similarity))
 
-    # Сортировка по коэффициенту сходства в порядке убывания
     similar_images = sorted(similar_images, key=lambda x: x[1], reverse=True)
 
-    # Получение топ-K похожих изображений
     top_k_similar = similar_images[:top_k]
 
     return top_k_similar
 
-# Пример использования
-target_image = '.\\usersImages\\1.png'
-folder_path = '.\\usersImages'
-top_k = 5
-
-similar_images = find_similar_images(target_image, folder_path, top_k)
-
-# Вывод результатов
-print(f"Топ-{top_k} похожих изображений для {target_image}:")
-for image, similarity in similar_images:
-    print(f"Изображение: {image}, Коэффициент сходства: {similarity}")
+if __name__ == '__main__':
+    app.run(port=5000)

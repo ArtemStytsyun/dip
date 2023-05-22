@@ -9,6 +9,7 @@
     box-shadow: 0 0 10px darkgray;
     width: 100%;
     min-height: 200px;
+
     margin: 0 auto;
     overflow: hidden;
 }
@@ -21,7 +22,13 @@
 
 .image-block {
     width: 100%;
-    object-fit: cover;
+    /* object-fit: cover; */
+}
+
+.image-block img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: contain;
 }
 
 .image-content {
@@ -194,7 +201,8 @@
 .image-card {
     display: block;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    min-width: 100%;    
+    min-height: 100%;  
 }
 
 

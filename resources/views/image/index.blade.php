@@ -123,7 +123,6 @@
                 <div class="image-content-actions">
                     @guest
                     @else
-                       
                         <div class="uk-margin-small">
                             <a uk-icon="more" class="uk-icon uk-icon-button">
                                 <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="10" r="2"/><circle cx="10" cy="10" r="2"/><circle cx="17" cy="10" r="2"/></svg>
@@ -262,10 +261,18 @@
                 </form>
             </div>
         </div>
-
-        <div>
-            Похожие
+        <div class="uk-flex uk-flex-column uk-flex-middle uk-margin-small-top">
+            <h3>Похожие изображения</h3>
+            <div class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-small uk-margin-small-top" uk-grid="masonry: true"> 
+                @foreach ($images as $image)
+                    <a href="{{route('image.index', $image->id)}}">
+                        <img class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle image-card" src="{{asset('/storage/' . $image->path)}}" alt="">
+                        <p>{{$image->name}}</p>
+                        <p>{{$image->user->id}}</p>
+                    </a>
+                @endforeach
+            </div>
         </div>
         
     </div>
-@endSection('content') --}}
+@endSection('content') 
