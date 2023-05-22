@@ -13,7 +13,7 @@ def index():
 
     target_image = '..\\storage\\app\\public\\' + path['path'].replace('/', '\\')
     folder_path = '..\\storage\\app\\public\\usersImages'
-    top_k = 5
+    top_k = 10
     print(path['path'])
 
     similar_images = find_similar_images(target_image, folder_path, top_k)
@@ -22,9 +22,9 @@ def index():
 
 def compare_images(image1, image2):
     img1 = cv2.imread(image1)
-    img1 = cv2.resize(img1, (600, 600), interpolation=cv2.INTER_AREA)
+    img1 = cv2.resize(img1, (300, 300), interpolation=cv2.INTER_AREA)
     img2 = cv2.imread(image2)
-    img2 = cv2.resize(img2, (600, 600), interpolation=cv2.INTER_AREA)
+    img2 = cv2.resize(img2, (300, 300), interpolation=cv2.INTER_AREA)
     
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
     img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
@@ -47,7 +47,7 @@ def find_similar_images(target_image, folder_path, top_k):
             similar_images.append((image_file, similarity))
 
     similar_images = sorted(similar_images, key=lambda x: x[1], reverse=True)
-
+    
     top_k_similar = similar_images[:top_k]
 
     return top_k_similar

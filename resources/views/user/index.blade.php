@@ -15,7 +15,7 @@
                 <p class="uk-text-center">{{$user->description}}</p>
             </div>
 
-            <div class="profile-subscriptions">
+            <div class="profile-subscriptions uk-margin">
                 <p class="uk-text-center">подписок: {{count($user->subscriptions)}}</p> 
                 <p class="uk-text-center">подписчиков: {{count($user->subscribers)}}</p>
             </div>
@@ -83,15 +83,28 @@
             </div>
         </div>
 
-        <div uk-grid class="uk-child-width-1-3@s uk-grid-match uk-margin-large-top" >
-        @foreach ( $boards as $board )
-            <a href="{{route('board.index', $board->id)}}">
-                <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-                    <h3 class="uk-card-title">{{$board->name}}</h3>
-                    <p>{{$board->description}}</p>
-                </div>
-            </a>
-        @endforeach
+        <div uk-grid class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-match uk-margin-large-top uk-width-1-1" >
+            @foreach ( $boards as $board )
+                <a href="{{route('board.index', $board->id)}}">
+                    <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body board-card">
+                        @if ($board->images()->count() > 2) 
+                            <div class="board-box">
+                                <div class="board-box-image">
+                                    <img src="{{asset('/storage/' . $board->images[0][0]->path)}}" alt="">
+                                </div>
+                                <div class="board-box-image">
+                                    <img src="{{asset('/storage/' . $board->images[0][1]->path)}}" alt="">
+                                </div>
+                                <div class="board-box-image">
+                                    <img src="{{asset('/storage/' . $board->images[0][2]->path)}}" alt="">
+                                </div>
+                            </div>
+                        @endif
+                        <p class="board-card-title">{{$board->name}}</p>
+                        <p class="board-card-description">{{$board->description}}</p>
+                    </div>
+                </a>
+            @endforeach
         </div>
     </div>
     

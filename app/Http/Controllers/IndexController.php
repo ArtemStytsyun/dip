@@ -29,10 +29,13 @@ class IndexController extends Controller
         if(Auth::check()) {
             $userBoards = Auth::user()->boards;
             $subscribes = Auth::user()->subscriptions;
-            foreach ($subscribes  as $subscribe) {
-                // dd ($subscribe->id);
-                $subscribesImages = Image::where('user_id', $subscribe->id)->orderBy('created_at')->limit(50)->get();
+            if ($subscribes != null) {
+                foreach ($subscribes  as $subscribe) {
+                    // dd ($subscribe->id);
+                    $subscribesImages = Image::where('user_id', $subscribe->id)->orderBy('created_at')->limit(50)->get();
+                }
             }
+            
 
             $boards = [];
 

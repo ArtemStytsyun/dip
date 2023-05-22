@@ -27,31 +27,35 @@
         </li>
         @guest
         @else
-        <li>
-            <div class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-small" uk-grid="masonry: true">  
-                @foreach ($subscribesImages as $image)
-                    <a href="{{route('image.index', $image->id)}}">
-                        <img class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle image-card" src="{{asset('/storage/' . $image->path)}}" alt="">
-                        <p>{{$image->name}}</p>
-                        <p>{{$image->user->id}}</p>
-                    </a>
-                @endforeach
-            </div>
-        </li>
-
-            @foreach ($boards as $board)
-                <li>
-                    <div class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-small" uk-grid="masonry: true">  
-                        @foreach ($board as $image)
+            <li>
+                <div class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-small" uk-grid="masonry: true">  
+                    @if ($subscribesImages != null)
+                        @foreach ($subscribesImages as $image)
                             <a href="{{route('image.index', $image->id)}}">
                                 <img class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle image-card" src="{{asset('/storage/' . $image->path)}}" alt="">
                                 <p>{{$image->name}}</p>
                                 <p>{{$image->user->id}}</p>
                             </a>
                         @endforeach
-                    </div>
-                </li>
-            @endforeach
+                    @endif
+                </div>
+            </li>
+
+            @if ($boards != null)
+                @foreach ($boards as $board)
+                    <li>
+                        <div class="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-small" uk-grid="masonry: true">  
+                            @foreach ($board as $image)
+                                <a href="{{route('image.index', $image->id)}}">
+                                    <img class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle image-card" src="{{asset('/storage/' . $image->path)}}" alt="">
+                                    <p>{{$image->name}}</p>
+                                    <p>{{$image->user->id}}</p>
+                                </a>
+                            @endforeach
+                        </div>
+                    </li>
+                @endforeach
+            @endif
         @endguest
     </ul>
 </div>
