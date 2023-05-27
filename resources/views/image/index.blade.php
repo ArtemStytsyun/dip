@@ -159,7 +159,7 @@
                                         <a href="#image-delete" uk-toggle>Удалить</a>
                                         <div id="image-delete" uk-modal>
                                             <div class="uk-modal-dialog uk-modal-body">
-                                                <h2 class="uk-modal-title">Уверены, что хотите удалить изображения {{$image->name}} ?</h2>
+                                                <h2 class="uk-modal-title">Уверены, что хотите удалить изображение {{$image->name}} ?</h2>
                                                 <div class="uk-flex uk-flex-middle uk-flex-between">
                                                     <button class="uk-button uk-button-default uk-modal-close" type="button">Отмена</button>
                                                     <form action="{{route('image.destroy', $image->id)}}" method="post">
@@ -175,26 +175,29 @@
                             </div>
                         </div>    
                         
-                        <div class="image-form-action-block">
+                        <div class="image-form-action-block" uk-margin>
                             <form class="image-form-save" action="{{route('image.save', $image->id)}}" method="POST" >
                                 @csrf
-                
                                 <div class="uk-form-controls image-input-select">
                                     <select class="uk-select" name="board_id">
                                         @foreach ( Auth::user()->boards as $selectBoard)
-                                            <option value="{{$selectBoard->id}}"> 
+                                            <option value="{{$selectBoard->id}}" 
+                                                @if($image->boards->where('user_id', Auth::user()->id)->first() != null);
+                                                    @if ($selectBoard->id == $image->boards->where('user_id', Auth::user()->id)->first()->id) 
+                                                        selected 
+                                                    @endif
+                                                @endif> 
                                                 {{$selectBoard->name}}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
-                            
                                 <button class="uk-button uk-button-default uk-button-small uk-margin-small-left" type="submit" name='image-save'>Сохранить</button>
                             </form>
                             
-                            <form class="image-form-like uk-margin-small-left" action="{{route('image.like.index', $image)}}" method="post">
+                            <form class="image-form-like uk-margin-small-left uk-flex uk-flex-middle" action="{{route('image.like.index', $image)}}" method="post">
                                 @csrf
-                                {{count($image->likedUsers)}}
+                                <p>{{count($image->likedUsers)}}</p>
                                 <button class="uk-button uk-button-default uk-button-small uk-margin-small-left" type="submit" name='like-create'>Лайк</button>
                                 {{-- <div class="button-icon">
                                      <span uk-icon="heart" class="uk-icon">
@@ -216,16 +219,12 @@
                     <div class="image-description">
                         <p>{{$image->description}}</p>
                     </div>
-                    <div class="image-author">
+                    <a href="{{route('user', $image->user->id)}}" class="image-author">
                         <div class="image-author-info">
                             <h2>{{$image->user->picture}}</h2>
                             <p>{{$image->user->name}}</p>
                         </div>
-                        
-                        <form action="">
-                            <button class="uk-button uk-button-default uk-button-small" type="submit" name='user-subscribe'>Подписаться</button>
-                        </form>
-                    </div>
+                    </a>
                 </div>
                 <hr>
                 <div class="image-comment-section">
@@ -268,7 +267,7 @@
                     <a href="{{route('image.index', $image->id)}}">
                         <img class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle image-card" src="{{asset('/storage/' . $image->path)}}" alt="">
                         <p>{{$image->name}}</p>
-                        <p>{{$image->user->id}}</p>
+                        <p>{{$image->user->name}}</p>
                     </a>
                 @endforeach
             </div>

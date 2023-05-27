@@ -14,7 +14,9 @@ class IndexController extends Controller
         $image = Image::find($id);
         $comments = $image->comments;
         $likedUsers = $image->likedUsers;
-      
+        $isSaveInBoardUser = false;
+        $user = $image->user;
+
         $number = 5; // Наше число, которое мы хотим передать в микросервис
         
         $response = Http::post('http://localhost:5000/images', [
@@ -29,24 +31,24 @@ class IndexController extends Controller
                 array_push($images, $similarImage);
             } 
         }
-
-        if($image->user->id == Auth::user()->id) {
-            return view('image.index', compact('image', 'comments', 'likedUsers', 'images'));
-        }
-
-        else {
-            $userBorards = Auth::user()->boards;
-            $imageBoards = $image->boards;
-            $isSaveInBoardUser = false;
-            foreach ($imageBoards as $imageBoard) {
-                foreach ($userBorards as $userBorard)
-                if($userBorard->id == $imageBoard->id) {
-                    $isSaveInBoardUser = true;
-                    break;
-                }
+        if (Auth::check()) {
+            if($image->user->id == Auth::user()->id) {
+                return view('image.index', compact('image', 'comments', 'likedUsers', 'images'));
             }
-            
-            return view('image.show', compact('image', 'comments', 'likedUsers', 'isSaveInBoardUser', 'images'));
-        } 
+            else {
+                $userBorards = Auth::user()->boards;
+                $imageBoards = $image->boards;
+                foreach ($imageBoards as $imageBoard) {
+                    foreach ($userBorards as $userBorard)
+                    if($userBorard->id == $imageBoard->id) {
+                        $isSaveInBoardUser = true;
+                        break;
+                    }
+                }               
+                return view('image.show', compact('image', 'comments', 'likedUsers', 'isSaveInBoardUser', 'images', 'user'));
+            } 
+        } else {
+            return view('image.show', compact('image', 'comments', 'likedUsers', 'isSaveInBoardUser', 'images', 'user'));
+        }
     }
 }

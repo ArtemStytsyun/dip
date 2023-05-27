@@ -20,7 +20,7 @@
                     <a href="{{route('image.index', $image->id)}}">
                         <img class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle image-card" src="{{asset('/storage/' . $image->path)}}" alt="">
                         <p>{{$image->name}}</p>
-                        <p>{{$image->user->id}}</p>
+                        <p>{{$image->user->name}}</p>
                     </a>
                 @endforeach
             </div>
@@ -34,7 +34,7 @@
                             <a href="{{route('image.index', $image->id)}}">
                                 <img class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle image-card" src="{{asset('/storage/' . $image->path)}}" alt="">
                                 <p>{{$image->name}}</p>
-                                <p>{{$image->user->id}}</p>
+                                <p>{{$image->user->name}}</p>
                             </a>
                         @endforeach
                     @endif
@@ -49,7 +49,7 @@
                                 <a href="{{route('image.index', $image->id)}}">
                                     <img class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle image-card" src="{{asset('/storage/' . $image->path)}}" alt="">
                                     <p>{{$image->name}}</p>
-                                    <p>{{$image->user->id}}</p>
+                                    <p>{{$image->user->name}}</p>
                                 </a>
                             @endforeach
                         </div>

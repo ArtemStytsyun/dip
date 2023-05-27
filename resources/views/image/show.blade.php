@@ -8,6 +8,7 @@
             <div class="image-content">
                 <div class="image-content-actions">
                     @guest
+                    <p>Лайков: {{count($image->likedUsers)}}</p>
                     @else
                         @if ($isSaveInBoardUser)
                             <div>
@@ -43,7 +44,12 @@
                                 <div class="uk-form-controls image-input-select">
                                     <select class="uk-select" name="board_id">
                                         @foreach ( Auth::user()->boards as $selectBoard)
-                                            <option value="{{$selectBoard->id}}"> 
+                                            <option value="{{$selectBoard->id}}" 
+                                                @if($image->boards->where('user_id', Auth::user()->id)->first() != null);
+                                                    @if ($selectBoard->id == $image->boards->where('user_id', Auth::user()->id)->first()->id) 
+                                                        selected 
+                                                    @endif
+                                                @endif> 
                                                 {{$selectBoard->name}}
                                             </option>
                                         @endforeach
@@ -53,9 +59,9 @@
                                 <button class="uk-button uk-button-default uk-button-small uk-margin-small-left" type="submit" name='image-save'>Сохранить</button>
                             </form>
                             
-                            <form class="image-form-like uk-margin-small-left" action="{{route('image.like.index', $image)}}" method="post">
+                            <form class="image-form-like uk-margin-small uk-margin-small-left uk-flex uk-flex-middle" action="{{route('image.like.index', $image)}}" method="post">
                                 @csrf
-                                {{count($image->likedUsers)}}
+                                <p>{{count($image->likedUsers)}}</p>
                                 <button class="uk-button uk-button-default uk-button-small uk-margin-small-left" type="submit" name='like-create'>Лайк</button>
                                 {{-- <div class="button-icon">
                                      <span uk-icon="heart" class="uk-icon">
@@ -77,16 +83,25 @@
                     <div class="image-description">
                         <p>{{$image->description}}</p>
                     </div>
-                    <div class="image-author">
+                    <a href="{{route('user', $image->user->id)}}" class="image-author">
                         <div class="image-author-info">
                             <h2>{{$image->user->picture}}</h2>
                             <p>{{$image->user->name}}</p>
                         </div>
-                        
-                        <form action="">
-                            <button class="uk-button uk-button-default uk-button-small" type="submit" name='user-subscribe'>Подписаться</button>
-                        </form>
-                    </div>
+                        @if (Auth::check()) 
+                            @if (!$user->subscribers()->find(Auth::user()->id)) 
+                                <form action="{{route('user.subscribe', $user->id)}}" method="POST">
+                                    @csrf
+                                    <button class="uk-button uk-button-default uk-button-small uk-margin-small-right uk-margin-small-left" type="submit" name='user-subscribe'>Подписаться</button>
+                                </form> 
+                            @else
+                                <form action="{{route('user.unsubscribe', $user->id)}}" method="POST">
+                                    @csrf
+                                    <button class="uk-button uk-button-default uk-button-small uk-margin-small-right uk-margin-small-left" type="submit" name='user-unsubscribe'>Отписаться</button>
+                                </form> 
+                            @endif
+                        @endif
+                    </a>
                 </div>
                 <hr>
                 <div class="image-comment-section">
@@ -111,15 +126,17 @@
                     
                 </div>
                 <hr>
-                <form class="image-comment-form uk-margin-small-top uk-margin-small-bottom" action="{{route('image.comment.store', $image)}}" method="post" >
-                    @csrf
-                    <textarea class="image-comment-input-text" name="text" id="">
+                @if (Auth::check()) 
+                    <form class="image-comment-form uk-margin-small-top uk-margin-small-bottom" action="{{route('image.comment.store', $image)}}" method="post" >
+                        @csrf
+                        <textarea class="image-comment-input-text" name="text" id="">
 
-                    </textarea>
-                    <button class="comment-send-button" type="submit" name='comment-create'>
-                        Отправить
-                    </button>
-                </form>
+                        </textarea>
+                        <button class="comment-send-button" type="submit" name='comment-create'>
+                            Отправить
+                        </button>
+                    </form>
+                @endif
             </div>
         </div>
         <div class="uk-flex uk-flex-column uk-flex-middle uk-margin-small-top">
@@ -129,7 +146,7 @@
                     <a href="{{route('image.index', $image->id)}}">
                         <img class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle image-card" src="{{asset('/storage/' . $image->path)}}" alt="">
                         <p>{{$image->name}}</p>
-                        <p>{{$image->user->id}}</p>
+                        <p>{{$image->user->name}}</p>
                     </a>
                 @endforeach
             </div>

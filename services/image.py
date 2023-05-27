@@ -48,8 +48,8 @@ def find_similar_images(target_image, folder_path, top_k):
 
     similar_images = sorted(similar_images, key=lambda x: x[1], reverse=True)
     
-    top_k_similar = similar_images[:top_k]
-
+    top_k_similar = similar_images[1:top_k]
+    
     return top_k_similar
 
 if __name__ == '__main__':

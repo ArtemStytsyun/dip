@@ -4,7 +4,7 @@
     <div class="uk-flex uk-flex-center">
         <div class="uk-card uk-card-default uk-width-1-2@s uk-width-1-3@m">
             <div class="uk-card-header">
-                Регистрация
+                Авторизация
             </div>
 
             <div class="uk-card-body">
@@ -54,13 +54,13 @@
                     </div>
                 </form>
             </div>
-            <div class="uk-card-footer">
+            {{-- <div class="uk-card-footer">
                 @if (Route::has('password.request'))
                     <a class="btn btn-link" href="{{ route('password.request') }}">
                         Забыли свой пароль?
                     </a>
                 @endif
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

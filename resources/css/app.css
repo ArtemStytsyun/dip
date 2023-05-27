@@ -203,6 +203,7 @@
     border-radius: 10px;
     min-width: 100%;    
     min-height: 100%;  
+
 }
 
 .board-box {
@@ -250,25 +251,43 @@
 
 .board-card {
     border-radius: 20px;
+    min-height: 100px;
 }
 
 .board-card-title {
     font-size: 14px;
-    word-wrap: initial;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .board-card-description {
     font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-min-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 424px) {
+
+    .board-box {
+        display: flex;
+    }
 }
 
 @media (min-width: 640px) {
     .profile-image { 
         width: 200px;
         height: 200px;
-    }
-
-    .board-box {
-        display: flex;
     }
 }
 

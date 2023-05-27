@@ -18,7 +18,6 @@ class IndexController extends Controller
         $likedImages = $user->likedImages;
         $subscriptions = $user->subscriptions;
         
-        
         foreach($boards as $board) {
             $board->images = array($board->images);
         } 

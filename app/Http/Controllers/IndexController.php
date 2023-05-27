@@ -12,19 +12,10 @@ class IndexController extends Controller
 {
     public function __invoke() {
 
-        $mainImages = Image::inRandomOrder()->limit(10)->get();
+        $mainImages = Image::inRandomOrder()->limit(20)->get();
         $userBoards = null;
         $subscribesImages = null;
         $boards = null;
-       
-        // dd ($subscribesImages);
-        // dd ($subscribes);
-        // foreach ($subscribes as $subscribe) {
-        //     foreach ($subscribe->boards as $board) {
-        //         array_pusch($subscribesImages, );$board->images()->inRandomOrder()->limit(10)->get();
-        //         dd()
-        //     }
-        // }
 
         if(Auth::check()) {
             $userBoards = Auth::user()->boards;

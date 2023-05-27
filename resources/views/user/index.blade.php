@@ -1,23 +1,59 @@
 @extends('layouts.app')
 @section('content')
     <div class=" uk-flex uk-flex-middle uk-flex-right uk-flex-center uk-flex-column">
-
         <div class="profile-info">
             <div>
                 <img class="profile-image" src="{{asset('/storage/' . $user->image)}}" alt="">
             </div>
-    
             <div class="profile-name">
                 <h3 class="uk-text-center uk-margin-small-top">{{$user->name}}</h3>
             </div>
-
             <div class="profile-description">
                 <p class="uk-text-center">{{$user->description}}</p>
             </div>
-
-            <div class="profile-subscriptions uk-margin">
-                <p class="uk-text-center">подписок: {{count($user->subscriptions)}}</p> 
-                <p class="uk-text-center">подписчиков: {{count($user->subscribers)}}</p>
+            <div class="profile-subscriptions uk-margin uk-flex uk-flex-column uk-flex-middle">
+                <div>
+                    <a class="uk-text-center" href="#subscriptions" uk-toggle>подписок: {{count($user->subscriptions)}}</a> 
+                    <div id="subscriptions" uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <div class="uk-flex uk-flex-middle uk-flex-between">
+                                <ul class="uk-list uk-list-divider">
+                                @foreach ($user->subscriptions as $subscription) 
+                                    <li>
+                                        <a class="uk-flex" href="{{route('user', $subscription->name)}}">
+                                            <div>
+                                                <img class="user-min-image" src="{{asset('/storage/' . $subscription->image)}}" alt="">
+                                            </div>
+                                            <div class="uk-margin-left uk-flex uk-flex-middle uk-text-center">{{$subscription->name}}</div>
+                                        </a>
+                                    </li>
+                                @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a class="uk-text-center" href="#subscribers" uk-toggle> подписчиков: {{count($user->subscribers)}}</a> 
+                    <div id="subscribers" uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <div class="uk-flex uk-flex-middle uk-flex-between">
+                                <ul class="uk-list uk-list-divider">
+                                @foreach ($user->subscribers as $subscriber) 
+                                    <li>
+                                        <a class="uk-flex" href="{{route('user', $subscriber->name)}}">
+                                            <div>
+                                                <img class="user-min-image" src="{{asset('/storage/' . $subscriber->image)}}" alt="">
+                                            </div>
+                                            <div class="uk-margin-left uk-flex uk-flex-middle uk-text-center">{{$subscriber->name}}</div>
+                                        </a>
+                                    </li>
+                                @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         

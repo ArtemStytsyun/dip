@@ -15,14 +15,11 @@ class IndexController extends Controller
         
         $user = Board::find($id)->user;
         $board = Board::find($id);
-        // dd($board->images);
-        
 
         if(Auth::id() == $user->id){
             return view('board.index', compact('board'));
         }
         else{
-            // $board->images = array($board->images);
             return view('board.show', compact('board'));
         }
     }
