@@ -1,9 +1,6 @@
 <?php
 namespace App\Http\Controllers\Image;
-use Illuminate\Http\Request;
 use App\Models\Image;
-use App\Models\Board;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
@@ -16,8 +13,6 @@ class IndexController extends Controller
         $likedUsers = $image->likedUsers;
         $isSaveInBoardUser = false;
         $user = $image->user;
-
-        $number = 5; // Наше число, которое мы хотим передать в микросервис
         
         $response = Http::post('http://localhost:5000/images', [
             'path' => $image->path

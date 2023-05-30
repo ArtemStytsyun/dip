@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Image;
 
 use App\Models\BoardImage;
-use Illuminate\Http\Request;
 use App\Models\Image;
 use App\Models\Board;
-use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 

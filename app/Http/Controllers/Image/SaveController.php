@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers\Image;
 
-use Illuminate\Http\Request;
 use App\Models\Image;
-use App\Models\Board;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
